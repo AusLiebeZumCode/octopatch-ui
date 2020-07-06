@@ -2,5 +2,127 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "octopatch-editor": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/octopatch-editor",
+      "sourceRoot": "projects/octopatch-editor/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/octopatch-editor",
+            "index": "projects/octopatch-editor/src/index.html",
+            "main": "projects/octopatch-editor/src/main.ts",
+            "polyfills": "projects/octopatch-editor/src/polyfills.ts",
+            "tsConfig": "projects/octopatch-editor/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/octopatch-editor/src/favicon.ico",
+              "projects/octopatch-editor/src/assets"
+            ],
+            "styles": [
+              "projects/octopatch-editor/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/octopatch-editor/src/environments/environment.ts",
+                  "with": "projects/octopatch-editor/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "octopatch-editor:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "octopatch-editor:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "octopatch-editor:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/octopatch-editor/src/test.ts",
+            "polyfills": "projects/octopatch-editor/src/polyfills.ts",
+            "tsConfig": "projects/octopatch-editor/tsconfig.spec.json",
+            "karmaConfig": "projects/octopatch-editor/karma.conf.js",
+            "assets": [
+              "projects/octopatch-editor/src/favicon.ico",
+              "projects/octopatch-editor/src/assets"
+            ],
+            "styles": [
+              "projects/octopatch-editor/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/octopatch-editor/tsconfig.app.json",
+              "projects/octopatch-editor/tsconfig.spec.json",
+              "projects/octopatch-editor/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/octopatch-editor/e2e/protractor.conf.js",
+            "devServerTarget": "octopatch-editor:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "octopatch-editor:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "defaultProject": "octopatch-editor"
 }

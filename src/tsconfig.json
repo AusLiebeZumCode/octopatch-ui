@@ -6,5 +6,15 @@
 */
 {
   "files": [],
-  "references": []
+  "references": [
+    {
+      "path": "./projects/octopatch-editor/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/octopatch-editor/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/octopatch-editor/e2e/tsconfig.json"
+    }
+]
 }
