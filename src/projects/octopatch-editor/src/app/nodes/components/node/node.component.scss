@@ -1,13 +1,16 @@
 :host {
   display: inline-block;
+  cursor: pointer;
 }
 
 .op-node {
+  position: absolute;
   background-color: var(--light-blue, #1db9ff);
   border-radius: 16px;
   color: var(--white, #fff);
   display: flex;
   flex-direction: row;
+  box-shadow: 2px 2px 6px var(--light-grey);
 
   > .op-node-title {
     text-align: center;

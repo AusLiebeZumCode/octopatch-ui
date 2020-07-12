@@ -1,5 +1,6 @@
 import { InputEndpoint } from "./input-endpoint";
 import { OutputEndpoint } from "./output-endpoint";
+import { NodePosition } from "./node-position";
 
 export interface NodeConfiguration {
   /**
@@ -12,4 +13,5 @@ export interface NodeConfiguration {
   name: string;
   inputs?: Array<InputEndpoint>;
   outputs?: Array<OutputEndpoint>;
+  position?: NodePosition;
 }
