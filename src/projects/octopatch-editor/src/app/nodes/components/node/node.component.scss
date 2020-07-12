@@ -1,0 +1,35 @@
+:host {
+  display: inline-block;
+}
+
+.op-node {
+  background-color: var(--light-blue, #1db9ff);
+  border-radius: 16px;
+  color: var(--white, #fff);
+  display: flex;
+  flex-direction: row;
+
+  > .op-node-title {
+    text-align: center;
+    padding: 16px;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  > .op-node-inputs {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+  }
+
+  > .op-node-outputs {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+  }
+
+  .op-node-endpoint {
+    padding: 8px;
+    font-size: 0.8rem;
+  }
+}
