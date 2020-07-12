@@ -1,11 +1,15 @@
-<div class="op-node">
+<div class="op-node" *ngIf="configuration">
   <div class="op-node-inputs">
-    <div class="op-node-endpoint">Input 1</div>
+    <ng-container *ngFor="let endpoint of configuration.inputs">
+      <div [id]="endpoint.id" class="op-node-endpoint">{{ endpoint.name }}</div>
+    </ng-container>
   </div>
-  <div class="op-node-title">
-    <p>Node 1</p>
+  <div [id]="configuration.id" class="op-node-title">
+    <p>{{ configuration.name }}</p>
   </div>
   <div class="op-node-outputs">
-    <div class="op-node-endpoint">Output 1</div>
+    <ng-container *ngFor="let endpoint of configuration.outputs">
+      <div [id]="endpoint.id" class="op-node-endpoint">{{ endpoint.name }}</div>
+    </ng-container>
   </div>
 </div>

@@ -1,3 +1,5 @@
 <div class="op-editor-page">
-  <opui-node></opui-node>
+  <ng-container *ngFor="let nodeConfiguration of nodeConfigurations">
+    <opui-node [configuration]="nodeConfiguration"></opui-node>
+  </ng-container>
 </div>
