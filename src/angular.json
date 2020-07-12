@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/octopatch-editor",
+            "outputPath": "../docs/octopatch-editor",
             "index": "projects/octopatch-editor/src/index.html",
             "main": "projects/octopatch-editor/src/main.ts",
             "polyfills": "projects/octopatch-editor/src/polyfills.ts",
@@ -123,6 +123,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "octopatch-editor"
 }
