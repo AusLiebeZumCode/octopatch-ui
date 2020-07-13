@@ -22,6 +22,7 @@ export class EditorPageComponent implements OnInit, AfterViewInit {
         outputs: [
           { id: "node1_output1", name: "Output 1" },
           { id: "node1_output2", name: "Output 2" },
+          { id: "node1_output3", name: "Output 3" },
         ],
         position: { top: 250, left: 150 },
       },
@@ -54,8 +55,10 @@ export class EditorPageComponent implements OnInit, AfterViewInit {
           isTarget: true,
           isSource: false,
           maxConnections: 1,
-          anchor: "LeftMiddle",
-          endpoint: ["Dot", { radius: 5 }],
+          anchor: [0,0,0,0,20,20],
+          connectorClass: "connector",
+          endpoint: ["Dot", { radius: 8, cssClass:"startpoint"}],
+          paintStyle: {strokeWidth:4, stroke:"white"}
         });
       }
       for (const output of node.outputs) {
@@ -63,8 +66,10 @@ export class EditorPageComponent implements OnInit, AfterViewInit {
           isTarget: false,
           isSource: true,
           maxConnections: 1,
-          anchor: "RightMiddle",
-          endpoint: ["Dot", { radius: 5 }],
+          anchor:[1,0,0,0,-20,20],
+          connectorClass: "connector",
+          endpoint: ["Dot", { radius: 8, hoverClass:"endpointHover", cssClass:"endpoint"}],
+          paintStyle: {strokeWidth:4, stroke:"white"}
         });
       }
       this.jsPlumbInstance.repaintEverything();
