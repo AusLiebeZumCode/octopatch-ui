@@ -1,44 +1,51 @@
-:host {
-  display: inline-block;
-  cursor: pointer;
-}
-.op-node {
-  position: absolute;
-  background-color: var(--light-blue, #1db9ff);
+:host.op-node {
   border-radius: 16px;
+  border: 2px solid var(--transparent, transparent);
+  box-sizing: content-box;
   color: var(--white, #fff);
-  display: flex;
-  flex-direction: row;
-  box-shadow: 2px 2px 6px var(--light-grey);
+  cursor: pointer;
+  position: absolute;
 
-  > .op-node-title {
-    text-align: center;
-    margin: auto;
-    font-size: 1rem;
-    font-weight: 700;
+  &.op-node-selected {
+    background-origin: border-box;
+    border: 2px solid var(--light-grey, #ababab);
   }
 
-  > .op-node-inputs {
+  > .op-node-spacing {
+    background-color: var(--light-blue, #1db9ff);
+    border-radius: 13px;
+    box-shadow: 2px 2px 6px var(--light-grey);
     display: flex;
-    flex: 1 1 auto;
-    flex-direction: column;
-  }
+    flex-direction: row;
+    margin: 8px;
 
-  > .op-node-outputs {
-    display: flex;
-    flex: 1 1 auto;
-    flex-direction: column;
-  }
+    > .op-node-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: auto;
+      text-align: center;
+    }
 
-  .op-node-endpoint-output {
-    padding: 10px 35px 15px 15px;
-    font-size: 0.8rem;
-  }
+    > .op-node-inputs {
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
+    }
 
-  .op-node-endpoint-input {
-    padding: 10px 15px 15px 35px;
-    font-size: 0.8rem;
+    > .op-node-outputs {
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 auto;
+    }
+
+    .op-node-endpoint-output {
+      font-size: 0.8rem;
+      padding: 10px 35px 15px 15px;
+    }
+
+    .op-node-endpoint-input {
+      font-size: 0.8rem;
+      padding: 10px 15px 15px 35px;
+    }
   }
 }
-
-
