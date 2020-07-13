@@ -13,7 +13,7 @@
 >
   <div class="op-node-inputs">
     <ng-container *ngFor="let endpoint of configuration.inputs">
-      <div [id]="endpoint.id" class="op-node-endpoint">{{ endpoint.name }}</div>
+      <div [id]="endpoint.id" class="op-node-endpoint-input">{{ endpoint.name }}</div>
     </ng-container>
   </div>
   <div class="op-node-title">
@@ -21,7 +21,7 @@
   </div>
   <div class="op-node-outputs">
     <ng-container *ngFor="let endpoint of configuration.outputs">
-      <div [id]="endpoint.id" class="op-node-endpoint">{{ endpoint.name }}</div>
+      <div [id]="endpoint.id" class="op-node-endpoint-output">{{ endpoint.name }}</div>
     </ng-container>
   </div>
 </div>
