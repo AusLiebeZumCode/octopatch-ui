@@ -4,6 +4,7 @@
   box-sizing: content-box;
   color: var(--white, #fff);
   cursor: pointer;
+  display: block;
   position: absolute;
 
   &.op-node-selected {
@@ -17,7 +18,7 @@
     box-shadow: 2px 2px 6px var(--light-grey);
     display: flex;
     flex-direction: row;
-    margin: 8px;
+    margin: 16px;
 
     > .op-node-title {
       font-size: 1rem;
@@ -46,6 +47,35 @@
     .op-node-endpoint-input {
       font-size: 0.8rem;
       padding: 10px 15px 15px 35px;
+    }
+  }
+
+  > .op-node-actions {
+    position: absolute;
+    right: 0px;
+    top: -20px;
+
+    > .op-node-action {
+      display: block;
+      height: 24px;
+      position: relative;
+      right: 16px;
+      top: 6px;
+      width: 24px;
+
+      &.delete {
+        background-color: red;
+        border-radius: 50%;
+        text-align: center;
+
+        svg.icon {
+          position: relative;
+          top: calc(50% - 8px);
+          width: 16px;
+          height: 16px;
+          fill: white;
+        }
+      }
     }
   }
 }
