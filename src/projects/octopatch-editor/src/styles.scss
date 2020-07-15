@@ -2,6 +2,7 @@
 :root {
   --light-blue: #1db9ff;
   --light-grey: #ababab;
+  --neon-green: #35de15;
   --white: #fff;
 }
 
@@ -13,35 +14,32 @@ body {
   margin: 0px;
 }
 
-
-
-.endpoint svg circle{
+.endpoint svg circle {
   fill: white;
 }
 
-.jtk-dragging svg{
+.jtk-dragging svg {
   border: 0px;
 }
 
-.startpoint svg circle{
+.startpoint svg circle {
   fill: white;
 }
 
-.jtk-dragging svg circle{
+.jtk-dragging svg circle {
   fill: var(--light-grey);
   stroke-width: 0;
 }
 
-.jtk-endpoint-full svg circle{
+.jtk-endpoint-full svg circle {
   fill: var(--light-grey);
 }
 
 .endpointHover svg circle {
- fill: var(--light-grey);
+  fill: var(--light-grey);
 }
 
-
-.connector path{
+.connector path {
   stroke: var(--light-grey);
   stroke-width: 3px;
 }

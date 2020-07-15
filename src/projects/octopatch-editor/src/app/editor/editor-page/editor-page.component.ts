@@ -1,7 +1,6 @@
 import { NodeConfiguration } from "./../../nodes/models/node-configuration";
 import { Component, OnInit, AfterViewInit } from "@angular/core";
 import { jsPlumb, jsPlumbInstance } from "jsplumb";
-import { TitleCasePipe } from "@angular/common";
 
 @Component({
   selector: "app-editor-page",
@@ -10,9 +9,10 @@ import { TitleCasePipe } from "@angular/common";
 })
 export class EditorPageComponent implements OnInit, AfterViewInit {
   private jsPlumbInstance: jsPlumbInstance;
-  private instances = [];
 
-  nodeConfigurations: Array<NodeConfiguration>;
+  public nodeConfigurations: Array<NodeConfiguration>;
+  public selectedNode: NodeConfiguration;
+
   constructor() {
     this.nodeConfigurations = [
       {
@@ -42,8 +42,16 @@ export class EditorPageComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    this.jsPlumbInstance = jsPlumb.getInstance({});
+    this.jsPlumbInstance = jsPlumb.getInstance({
+      DragOptions: {
+        containment: "op-editor-page",
+      },
+    });
     this.initNodes();
+  }
+
+  public selectNode(nodeId: string): void {
+    this.selectedNode = this.nodeConfigurations.find((x) => x.id === nodeId);
   }
 
   private initNodes(): void {
@@ -55,10 +63,10 @@ export class EditorPageComponent implements OnInit, AfterViewInit {
           isTarget: true,
           isSource: false,
           maxConnections: 1,
-          anchor: [0,0,0,0,20,20],
+          anchor: [0, 0, 0, 0, 20, 20],
           connectorClass: "connector",
-          endpoint: ["Dot", { radius: 8, cssClass:"startpoint"}],
-          paintStyle: {strokeWidth:4, stroke:"white"}
+          endpoint: ["Dot", { radius: 8, cssClass: "startpoint" }],
+          paintStyle: { strokeWidth: 4, stroke: "white" },
         });
       }
       for (const output of node.outputs) {
@@ -66,10 +74,13 @@ export class EditorPageComponent implements OnInit, AfterViewInit {
           isTarget: false,
           isSource: true,
           maxConnections: 1,
-          anchor:[1,0,0,0,-20,20],
+          anchor: [1, 0, 0, 0, -20, 20],
           connectorClass: "connector",
-          endpoint: ["Dot", { radius: 8, hoverClass:"endpointHover", cssClass:"endpoint"}],
-          paintStyle: {strokeWidth:4, stroke:"white"}
+          endpoint: [
+            "Dot",
+            { radius: 8, hoverClass: "endpointHover", cssClass: "endpoint" },
+          ],
+          paintStyle: { strokeWidth: 4, stroke: "white" },
         });
       }
       this.jsPlumbInstance.repaintEverything();

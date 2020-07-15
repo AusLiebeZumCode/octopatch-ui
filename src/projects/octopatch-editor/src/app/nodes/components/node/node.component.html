@@ -1,27 +1,21 @@
-<div
-  class="op-node"
-  *ngIf="configuration"
-  [id]="configuration.id"
-  [ngStyle]="{
-    top: configuration?.position?.top
-      ? configuration.position.top + 'px'
-      : null,
-    left: configuration?.position?.left
-      ? configuration.position.left + 'px'
-      : null
-  }"
->
-  <div class="op-node-inputs">
-    <ng-container *ngFor="let endpoint of configuration.inputs">
-      <div [id]="endpoint.id" class="op-node-endpoint-input">{{ endpoint.name }}</div>
-    </ng-container>
+<ng-container *ngIf="configuration">
+  <div class="op-node-spacing">
+    <div class="op-node-inputs">
+      <ng-container *ngFor="let endpoint of configuration.inputs">
+        <div [id]="endpoint.id" class="op-node-endpoint-input">
+          {{ endpoint.name }}
+        </div>
+      </ng-container>
+    </div>
+    <div class="op-node-title">
+      <p>{{ configuration.name }}</p>
+    </div>
+    <div class="op-node-outputs">
+      <ng-container *ngFor="let endpoint of configuration.outputs">
+        <div [id]="endpoint.id" class="op-node-endpoint-output">
+          {{ endpoint.name }}
+        </div>
+      </ng-container>
+    </div>
   </div>
-  <div class="op-node-title">
-    <p>{{ configuration.name }}</p>
-  </div>
-  <div class="op-node-outputs">
-    <ng-container *ngFor="let endpoint of configuration.outputs">
-      <div [id]="endpoint.id" class="op-node-endpoint-output">{{ endpoint.name }}</div>
-    </ng-container>
-  </div>
-</div>
+</ng-container>
