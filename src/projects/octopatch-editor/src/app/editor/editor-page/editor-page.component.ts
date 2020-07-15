@@ -1,7 +1,6 @@
 import { NodeConfiguration } from "./../../nodes/models/node-configuration";
 import { Component, OnInit, AfterViewInit } from "@angular/core";
 import { jsPlumb, jsPlumbInstance } from "jsplumb";
-import { TitleCasePipe } from "@angular/common";
 
 @Component({
   selector: "app-editor-page",
@@ -43,7 +42,11 @@ export class EditorPageComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    this.jsPlumbInstance = jsPlumb.getInstance({});
+    this.jsPlumbInstance = jsPlumb.getInstance({
+      DragOptions: {
+        containment: "op-editor-page",
+      },
+    });
     this.initNodes();
   }
 
