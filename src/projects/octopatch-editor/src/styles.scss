@@ -43,3 +43,12 @@ body {
   stroke: var(--light-grey);
   stroke-width: 3px;
 }
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
