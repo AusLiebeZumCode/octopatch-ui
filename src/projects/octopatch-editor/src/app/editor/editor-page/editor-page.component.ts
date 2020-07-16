@@ -1,62 +1,66 @@
+import { EditorConfigurationService } from "./../services/editor-configuration.service";
 import { NodeConfiguration } from "./../../nodes/models/node-configuration";
-import { Component, OnInit, AfterViewInit } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  AfterContentChecked,
+  AfterContentInit,
+  AfterViewChecked,
+  OnDestroy,
+} from "@angular/core";
 import { jsPlumb, jsPlumbInstance } from "jsplumb";
+import { Observable, Subscription } from "rxjs";
 
 @Component({
   selector: "app-editor-page",
   templateUrl: "./editor-page.component.html",
   styleUrls: ["./editor-page.component.scss"],
 })
-export class EditorPageComponent implements OnInit, AfterViewInit {
+export class EditorPageComponent
+  implements OnInit, AfterViewInit, AfterViewChecked, OnDestroy {
   private jsPlumbInstance: jsPlumbInstance;
 
   public nodeConfigurations: Array<NodeConfiguration>;
   public selectedNode: NodeConfiguration;
+  loadPromise: Subscription;
 
-  constructor() {
-    this.nodeConfigurations = [
-      {
-        id: "node1",
-        name: "Node 1",
-        inputs: [{ id: "node1_input1", name: "Input 1" }],
-        outputs: [
-          { id: "node1_output1", name: "Output 1" },
-          { id: "node1_output2", name: "Output 2" },
-          { id: "node1_output3", name: "Output 3" },
-        ],
-        position: { top: 250, left: 150 },
-      },
-      {
-        id: "node2",
-        name: "Node 2",
-        inputs: [
-          { id: "node2_input1", name: "Input 1" },
-          { id: "node2_input2", name: "Input 2" },
-        ],
-        outputs: [{ id: "node2_output1", name: "Output 1" }],
-        position: { top: 450, left: 550 },
-      },
-    ];
+  constructor(private editorConfigurations: EditorConfigurationService) {}
+
+  ngOnDestroy(): void {
+    if (this.loadPromise) {
+      this.loadPromise.unsubscribe();
+    }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadPromise = this.editorConfigurations
+      .getConfigurations()
+      .subscribe((c) => {
+        this.nodeConfigurations = c;
+        setTimeout(() => this.initNodes(this.nodeConfigurations), 0);
+      });
+  }
 
   ngAfterViewInit(): void {
     this.jsPlumbInstance = jsPlumb.getInstance({
+      Container: "op-editor-page",
       DragOptions: {
         containment: "op-editor-page",
       },
     });
-    this.initNodes();
+  }
+
+  ngAfterViewChecked(): void {
+    console.log("view checked");
   }
 
   public selectNode(nodeId: string): void {
     this.selectedNode = this.nodeConfigurations.find((x) => x.id === nodeId);
   }
 
-  private initNodes(): void {
-    this.jsPlumbInstance.setContainer("op-editor-page");
-    for (const node of this.nodeConfigurations) {
+  private initNodes(nodes: NodeConfiguration[]): void {
+    for (const node of nodes) {
       this.jsPlumbInstance.draggable(node.id);
       for (const input of node.inputs) {
         this.jsPlumbInstance.addEndpoint(input.id, {

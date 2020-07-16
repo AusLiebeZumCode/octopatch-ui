@@ -9,6 +9,7 @@ import { EditorPageComponent } from "./editor-page/editor-page.component";
   imports: [
     CommonModule,
     NodesModule,
+
     RouterModule.forChild([{ path: "", component: EditorPageComponent }]),
   ],
 })
