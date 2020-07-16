@@ -4,6 +4,7 @@
   box-sizing: content-box;
   color: var(--white, #fff);
   cursor: pointer;
+  display: block;
   position: absolute;
 
   &.op-node-selected {
@@ -17,7 +18,7 @@
     box-shadow: 2px 2px 6px var(--light-grey);
     display: flex;
     flex-direction: row;
-    margin: 8px;
+    margin: 16px;
 
     > .op-node-title {
       font-size: 1rem;
@@ -46,6 +47,50 @@
     .op-node-endpoint-input {
       font-size: 0.8rem;
       padding: 10px 15px 15px 35px;
+    }
+  }
+
+  > .op-node-actions {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 100%;
+    padding: 0px 16px;
+    position: absolute;
+    top: -16px;
+    width: 100%;
+
+    > .op-node-action {
+      display: block;
+      height: 24px;
+      width: 24px;
+      border-radius: 50%;
+      position: relative;
+      text-align: center;
+
+      &.delete {
+        background-color: red;
+        svg.icon {
+          position: relative;
+          top: calc(50% - 9px);
+          width: 15px;
+          height: 15px;
+          fill: var(--white, #fff);
+        }
+      }
+
+      &.edit {
+        background-color: var(--light-blue);
+      }
+
+      svg.icon {
+        position: relative;
+        top: calc(50% - 8px);
+        width: 16px;
+        height: 16px;
+        fill: var(--white, #fff);
+      }
     }
   }
 }
