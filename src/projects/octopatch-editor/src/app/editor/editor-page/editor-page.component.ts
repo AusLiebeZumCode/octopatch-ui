@@ -1,8 +1,18 @@
+import { NodeEditorComponent } from "./../../nodes/components/node-editor/node-editor.component";
 import { EditorConfigurationService } from "./../services/editor-configuration.service";
 import { NodeConfiguration } from "./../../nodes/models/node-configuration";
-import { Component, OnInit, AfterViewInit, OnDestroy } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  AfterViewInit,
+  OnDestroy,
+  ViewChild,
+  TemplateRef,
+  ViewContainerRef,
+} from "@angular/core";
 import { jsPlumb, jsPlumbInstance } from "jsplumb";
 import { Subscription } from "rxjs";
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
   selector: "app-editor-page",
@@ -16,7 +26,10 @@ export class EditorPageComponent implements OnInit, AfterViewInit, OnDestroy {
   public selectedNode: NodeConfiguration;
   loadPromise: Subscription;
 
-  constructor(private editorConfigurations: EditorConfigurationService) {}
+  constructor(
+    private editorConfigurations: EditorConfigurationService,
+    private matDialog: MatDialog
+  ) {}
 
   ngOnDestroy(): void {
     if (this.loadPromise) {
@@ -49,6 +62,9 @@ export class EditorPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public editNode(node: NodeConfiguration): void {
     console.log("edit:", node);
+    const dialogRef = this.matDialog.open(NodeEditorComponent, {
+      panelClass: "op-node-editor-panel",
+    });
   }
 
   public deleteNode(node: NodeConfiguration): void {

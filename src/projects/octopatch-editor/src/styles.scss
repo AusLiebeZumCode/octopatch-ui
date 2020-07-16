@@ -52,3 +52,10 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.op-node-editor-panel .mat-dialog-container {
+  padding: 0px;
+  border: 16px solid var(--light-blue);
+  border-radius: 30px;
+  box-sizing: border-box;
+}
