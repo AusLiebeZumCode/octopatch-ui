@@ -1,24 +1,15 @@
 import { EditorConfigurationService } from "./../services/editor-configuration.service";
 import { NodeConfiguration } from "./../../nodes/models/node-configuration";
-import {
-  Component,
-  OnInit,
-  AfterViewInit,
-  AfterContentChecked,
-  AfterContentInit,
-  AfterViewChecked,
-  OnDestroy,
-} from "@angular/core";
+import { Component, OnInit, AfterViewInit, OnDestroy } from "@angular/core";
 import { jsPlumb, jsPlumbInstance } from "jsplumb";
-import { Observable, Subscription } from "rxjs";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-editor-page",
   templateUrl: "./editor-page.component.html",
   styleUrls: ["./editor-page.component.scss"],
 })
-export class EditorPageComponent
-  implements OnInit, AfterViewInit, AfterViewChecked, OnDestroy {
+export class EditorPageComponent implements OnInit, AfterViewInit, OnDestroy {
   private jsPlumbInstance: jsPlumbInstance;
 
   public nodeConfigurations: Array<NodeConfiguration>;
@@ -51,12 +42,17 @@ export class EditorPageComponent
     });
   }
 
-  ngAfterViewChecked(): void {
-    console.log("view checked");
+  public selectNode(node: NodeConfiguration): void {
+    console.log("select:", node);
+    this.selectedNode = node;
   }
 
-  public selectNode(nodeId: string): void {
-    this.selectedNode = this.nodeConfigurations.find((x) => x.id === nodeId);
+  public editNode(node: NodeConfiguration): void {
+    console.log("edit:", node);
+  }
+
+  public deleteNode(node: NodeConfiguration): void {
+    console.log("delete:", node);
   }
 
   private initNodes(nodes: NodeConfiguration[]): void {

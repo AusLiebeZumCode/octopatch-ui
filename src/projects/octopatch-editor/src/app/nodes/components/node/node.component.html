@@ -1,5 +1,5 @@
 <ng-container *ngIf="configuration">
-  <div class="op-node-spacing">
+  <div class="op-node-spacing" (click)="select($event)">
     <div class="op-node-inputs">
       <ng-container *ngFor="let endpoint of configuration.inputs">
         <div [id]="endpoint.id" class="op-node-endpoint-input">
@@ -19,15 +19,15 @@
     </div>
   </div>
   <div class="op-node-actions" *ngIf="selected">
-    <span class="op-node-action delete">
+    <div class="op-node-action delete" (click)="delete($event)">
       <svg class="icon">
         <use xlink:href="../../../../assets/icons.svg#icon-delete"></use>
       </svg>
-    </span>
-    <span class="op-node-action edit">
+    </div>
+    <div class="op-node-action edit" (click)="edit($event)">
       <svg class="icon">
         <use xlink:href="../../../../assets/icons.svg#icon-edit"></use>
       </svg>
-    </span>
+    </div>
   </div>
 </ng-container>

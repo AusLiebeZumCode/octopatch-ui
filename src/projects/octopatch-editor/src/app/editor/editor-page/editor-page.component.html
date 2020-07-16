@@ -4,7 +4,9 @@
       [id]="node.id"
       [configuration]="node"
       [selected]="selectedNode?.id === node?.id"
-      (click)="selectNode(node.id)"
+      (selectClick)="selectNode($event)"
+      (editClick)="editNode($event)"
+      (deleteClick)="deleteNode($event)"
     ></opui-node>
   </ng-container>
 </div>
