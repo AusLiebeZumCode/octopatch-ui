@@ -1,2 +1,12 @@
 .op-node-editor {
+  padding: 16px;
+
+  .op-node-title {
+    text-align: center;
+    font-weight: 500;
+    font-size: 16pt;
+  }
+  .mat-form-field.op-full-width {
+    width: 100%;
+  }
 }

@@ -64,6 +64,10 @@ export class EditorPageComponent implements OnInit, AfterViewInit, OnDestroy {
     console.log("edit:", node);
     const dialogRef = this.matDialog.open(NodeEditorComponent, {
       panelClass: "op-node-editor-panel",
+      disableClose: true,
+      data: {
+        node,
+      },
     });
   }
 

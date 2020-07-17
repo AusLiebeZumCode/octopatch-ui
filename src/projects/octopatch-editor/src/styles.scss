@@ -6,6 +6,62 @@
   --white: #fff;
 }
 
+@import "~@angular/material/theming";
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// **Be sure that you only ever include this mixin once!**
+@include mat-core();
+
+$my-light-blue: (
+  50: var(--light-blue, #1db9ff),
+  100: var(--light-blue, #1db9ff),
+  200: var(--light-blue, #1db9ff),
+  300: var(--light-blue, #1db9ff),
+  400: var(--light-blue, #1db9ff),
+  500: var(--light-blue, #1db9ff),
+  600: var(--light-blue, #1db9ff),
+  700: var(--light-blue, #1db9ff),
+  800: var(--light-blue, #1db9ff),
+  900: var(--light-blue, #1db9ff),
+  A100: var(--light-blue, #1db9ff),
+  A200: var(--light-blue, #1db9ff),
+  A400: var(--light-blue, #1db9ff),
+  A700: var(--light-blue, #1db9ff),
+  contrast: (
+    50: white,
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  ),
+);
+
+// Define the default theme (same as the example above).
+$candy-app-primary: mat-palette($my-light-blue, A200, A100, A400);
+
+$candy-app-theme: mat-light-theme(
+  (
+    color: (
+      primary: $candy-app-primary,
+      accent: $candy-app-primary,
+    ),
+  )
+);
+
+// Include the default theme styles (color and default density)
+@include angular-material-theme($candy-app-theme);
+
 html,
 body {
   height: 100%;
@@ -53,9 +109,12 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.op-node-editor-panel .mat-dialog-container {
-  padding: 0px;
-  border: 16px solid var(--light-blue);
-  border-radius: 30px;
-  box-sizing: border-box;
+.op-node-editor-panel {
+  width: 24rem;
+  .mat-dialog-container {
+    padding: 0px;
+    border: 16px solid var(--light-blue);
+    border-radius: 30px;
+    box-sizing: border-box;
+  }
 }

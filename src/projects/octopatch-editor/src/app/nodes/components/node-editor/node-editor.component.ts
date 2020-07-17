@@ -1,5 +1,7 @@
-import { Component, OnInit, ViewEncapsulation } from "@angular/core";
-import { MatDialog } from "@angular/material/dialog";
+import { NodeConfiguration } from "./../../models/node-configuration";
+import { Component, OnInit, ViewEncapsulation, Inject } from "@angular/core";
+import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-node-editor",
@@ -8,11 +10,26 @@ import { MatDialog } from "@angular/material/dialog";
   encapsulation: ViewEncapsulation.None,
 })
 export class NodeEditorComponent implements OnInit {
-  constructor(private matDialog: MatDialog) {}
+  public nodeForm: FormGroup;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    public dialogRef: MatDialogRef<NodeEditorComponent>,
+    @Inject(MAT_DIALOG_DATA) private data: { node: NodeConfiguration }
+  ) {
+    this.nodeForm = this.formBuilder.group({
+      name: [this.node.name, Validators.required],
+    });
+  }
+
+  get node(): NodeConfiguration {
+    return this.data.node;
+  }
 
   ngOnInit(): void {}
 
-  test(event: MouseEvent) {
-    this.matDialog.open(NodeEditorComponent, {});
+  save(): void {
+    this.data.node = Object.assign(this.data.node, this.nodeForm.value);
+    this.dialogRef.close();
   }
 }
