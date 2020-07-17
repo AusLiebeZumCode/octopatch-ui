@@ -1,6 +1,7 @@
 import { InputEndpoint } from "./input-endpoint";
 import { OutputEndpoint } from "./output-endpoint";
 import { NodePosition } from "./node-position";
+import { NodeType } from "./node-type";
 
 export interface NodeConfiguration {
   /**
@@ -10,6 +11,7 @@ export interface NodeConfiguration {
   /**
    * the displayed name of the node
    */
+  type: NodeType;
   name: string;
   inputs?: Array<InputEndpoint>;
   outputs?: Array<OutputEndpoint>;

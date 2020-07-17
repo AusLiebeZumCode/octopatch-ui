@@ -1,0 +1,60 @@
+[
+  {
+    "id": "node1",
+    "name": "Node 1",
+    "type": {
+      "title": "Midi Device"
+    },
+    "inputs": [
+      {
+        "id": "node1_input1",
+        "name": "Input 1"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "node1_output1",
+        "name": "Output 1"
+      },
+      {
+        "id": "node1_output2",
+        "name": "Output 2"
+      },
+      {
+        "id": "node1_output3",
+        "name": "Output 3"
+      }
+    ],
+    "position": {
+      "top": 250,
+      "left": 150
+    }
+  },
+  {
+    "id": "node2",
+    "name": "Node 2",
+    "type": {
+      "title": "Midi Device"
+    },
+    "inputs": [
+      {
+        "id": "node2_input1",
+        "name": "Input 1"
+      },
+      {
+        "id": "node2_input2",
+        "name": "Input 2"
+      }
+    ],
+    "outputs": [
+      {
+        "id": "node2_output1",
+        "name": "Output 1"
+      }
+    ],
+    "position": {
+      "top": 450,
+      "left": 550
+    }
+  }
+]

@@ -1,5 +1,13 @@
 import { NodeConfiguration } from "./../../models/node-configuration";
-import { Component, OnInit, Input, HostBinding, Host } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  HostBinding,
+  Host,
+  EventEmitter,
+  Output,
+} from "@angular/core";
 
 @Component({
   selector: "opui-node",
@@ -7,9 +15,14 @@ import { Component, OnInit, Input, HostBinding, Host } from "@angular/core";
   styleUrls: ["./node.component.scss"],
 })
 export class NodeComponent implements OnInit {
+  @Output() public selectClick = new EventEmitter<NodeConfiguration>();
+  @Output() public editClick = new EventEmitter<NodeConfiguration>();
+  @Output() public deleteClick = new EventEmitter<NodeConfiguration>();
+
   constructor() {}
 
   @HostBinding("class") public className = "op-node";
+
   @HostBinding("class.op-node-selected")
   public isNodeSelected = false;
 
@@ -45,7 +58,18 @@ export class NodeComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  private isSelected(): boolean {
-    return this.selected;
+  public select(event: MouseEvent): void {
+    event.stopPropagation();
+    this.selectClick.emit(this.configuration);
+  }
+
+  public edit(event: MouseEvent): void {
+    event.stopPropagation();
+    this.editClick.emit(this.configuration);
+  }
+
+  public delete(event: MouseEvent): void {
+    event.stopPropagation();
+    this.deleteClick.emit(this.configuration);
   }
 }

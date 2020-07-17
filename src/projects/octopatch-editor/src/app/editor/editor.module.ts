@@ -1,3 +1,4 @@
+import { MaterialModule } from "./../material/material.module";
 import { NodesModule } from "./../nodes/nodes.module";
 import { RouterModule } from "@angular/router";
 import { NgModule } from "@angular/core";
@@ -9,6 +10,7 @@ import { EditorPageComponent } from "./editor-page/editor-page.component";
   imports: [
     CommonModule,
     NodesModule,
+    MaterialModule,
     RouterModule.forChild([{ path: "", component: EditorPageComponent }]),
   ],
 })
