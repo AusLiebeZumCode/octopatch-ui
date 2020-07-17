@@ -7,6 +7,8 @@
   display: block;
   position: absolute;
 
+
+
   &.op-node-selected {
     background-origin: border-box;
     border: 2px solid var(--light-grey, #ababab);
@@ -51,7 +53,6 @@
       padding: 10px 15px 15px 35px;
     }
   }
-
   > .op-node-actions {
     box-sizing: border-box;
     display: flex;
@@ -60,7 +61,8 @@
     max-width: 100%;
     padding: 0px 16px;
     position: absolute;
-    top: -16px;
+    top: -1px;
+    transform: translateY(-50%);
     width: 100%;
 
     > .op-node-action {
@@ -73,22 +75,20 @@
 
       &.delete {
         background-color: red;
-        svg.icon {
-          position: relative;
-          top: calc(50% - 9px);
-          width: 15px;
-          height: 15px;
-          fill: var(--white, #fff);
-        }
       }
 
       &.edit {
         background-color: var(--light-blue);
+        svg.icon{
+          width: 20px;
+          height: 20px;
+        }
       }
 
       svg.icon {
         position: relative;
-        top: calc(50% - 8px);
+        top: 50%;
+        transform: translateY(-50%);
         width: 16px;
         height: 16px;
         fill: var(--white, #fff);
