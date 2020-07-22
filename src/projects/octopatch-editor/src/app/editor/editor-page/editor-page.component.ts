@@ -1,3 +1,4 @@
+import { ToolboxService } from "./../services/toolbox.service";
 import { NodeEditorComponent } from "./../../nodes/components/node-editor/node-editor.component";
 import { EditorConfigurationService } from "./../services/editor-configuration.service";
 import { NodeConfiguration } from "./../../nodes/models/node-configuration";
@@ -11,7 +12,7 @@ import {
   ViewContainerRef,
 } from "@angular/core";
 import { jsPlumb, jsPlumbInstance } from "jsplumb";
-import { Subscription } from "rxjs";
+import { Subscription, Observable } from "rxjs";
 import { MatDialog } from "@angular/material/dialog";
 
 @Component({
@@ -27,6 +28,7 @@ export class EditorPageComponent implements OnInit, AfterViewInit, OnDestroy {
   loadPromise: Subscription;
 
   constructor(
+    private toolbox: ToolboxService,
     private editorConfigurations: EditorConfigurationService,
     private matDialog: MatDialog
   ) {}
@@ -35,6 +37,10 @@ export class EditorPageComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.loadPromise) {
       this.loadPromise.unsubscribe();
     }
+  }
+
+  get toolboxOpen$(): Observable<boolean> {
+    return this.toolbox.toolboxOpen$;
   }
 
   ngOnInit(): void {

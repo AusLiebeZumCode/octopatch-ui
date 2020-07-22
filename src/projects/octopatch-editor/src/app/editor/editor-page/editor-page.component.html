@@ -1,12 +1,25 @@
-<div id="op-editor-page" class="op-editor-page">
-  <ng-container *ngFor="let node of nodeConfigurations">
-    <opui-node
-      [id]="node.id"
-      [configuration]="node"
-      [selected]="selectedNode?.id === node?.id"
-      (selectClick)="selectNode($event)"
-      (editClick)="editNode($event)"
-      (deleteClick)="deleteNode($event)"
-    ></opui-node>
-  </ng-container>
-</div>
+<mat-drawer-container class="op-editor-page-drawer-container" autosize>
+  <mat-drawer
+    class="op-editor-page-drawer"
+    mode="over"
+    [disableClose]="true"
+    [opened]="toolboxOpen$ | async"
+  >
+    <!-- drawer content -->
+    <h1>Toolbox</h1>
+  </mat-drawer>
+  <mat-drawer-content class="op-editor-page-drawer-content">
+    <div id="op-editor-page" class="op-editor-page">
+      <ng-container *ngFor="let node of nodeConfigurations">
+        <opui-node
+          [id]="node.id"
+          [configuration]="node"
+          [selected]="selectedNode?.id === node?.id"
+          (selectClick)="selectNode($event)"
+          (editClick)="editNode($event)"
+          (deleteClick)="deleteNode($event)"
+        ></opui-node>
+      </ng-container>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
