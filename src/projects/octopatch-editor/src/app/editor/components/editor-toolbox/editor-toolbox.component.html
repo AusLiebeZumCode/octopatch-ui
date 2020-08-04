@@ -1,0 +1,17 @@
+<div class="op-editor-toolbox">
+  <div class="op-editor-toolbox-items">
+    <div
+      class="op-editor-toolbox-item"
+      *ngFor="let nodeDescription of nodeDescriptions$ | async"
+      (click)="handleItemClicked(nodeDescription)"
+    >
+      <div class="op-editor-toolbox-item-title">
+        {{ nodeDescription.name }} ({{ nodeDescription.version }})
+      </div>
+      <div class="op-editor-toolbox-item-details">
+        <p>{{ nodeDescription.name }}</p>
+      </div>
+      <div class="op-editor-toolbox-item-actions"></div>
+    </div>
+  </div>
+</div>

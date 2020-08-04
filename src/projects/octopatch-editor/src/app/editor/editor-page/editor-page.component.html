@@ -5,8 +5,9 @@
     [disableClose]="true"
     [opened]="toolboxOpen$ | async"
   >
-    <!-- drawer content -->
-    <h1>Toolbox</h1>
+    <opui-editor-toolbox
+      (editorItemClicked)="createNewNode($event)"
+    ></opui-editor-toolbox>
   </mat-drawer>
   <mat-drawer-content class="op-editor-page-drawer-content">
     <div id="op-editor-page" class="op-editor-page">
