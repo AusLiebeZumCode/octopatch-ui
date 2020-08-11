@@ -4,9 +4,10 @@ import { RouterModule } from "@angular/router";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { EditorPageComponent } from "./editor-page/editor-page.component";
+import { EditorToolboxComponent } from "./components/editor-toolbox/editor-toolbox.component";
 
 @NgModule({
-  declarations: [EditorPageComponent],
+  declarations: [EditorPageComponent, EditorToolboxComponent],
   imports: [
     CommonModule,
     NodesModule,

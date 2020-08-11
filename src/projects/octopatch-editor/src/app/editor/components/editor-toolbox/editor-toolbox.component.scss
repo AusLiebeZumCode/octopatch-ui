@@ -1,0 +1,11 @@
+.op-editor-toolbox {
+  width: 250px;
+
+  .op-editor-toolbox-item {
+    background-color: var(--light-blue);
+    color: var(--white);
+    margin: 8px;
+    padding: 8px;
+    border-radius: 16px;
+  }
+}

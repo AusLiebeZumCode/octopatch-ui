@@ -1,3 +1,4 @@
+import { ToolboxService } from "./editor/services/toolbox.service";
 import { Component } from "@angular/core";
 
 @Component({
@@ -7,4 +8,10 @@ import { Component } from "@angular/core";
 })
 export class AppComponent {
   title = "octopatch-editor";
+
+  constructor(private toolbox: ToolboxService) {}
+
+  toggleToolbox() {
+    this.toolbox.toggle();
+  }
 }
