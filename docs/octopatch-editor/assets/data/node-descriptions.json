@@ -1,0 +1,20 @@
+[
+  {
+    "guid": "800c26b3-65e5-4f45-8b67-5b94602e166f",
+    "name": "Midi",
+    "description": "Midi",
+    "typeName": "",
+    "version": "1.0.0",
+    "inputDescriptions": [],
+    "outputDescriptions": []
+  },
+  {
+    "guid": "0243d949-36cd-4c03-989f-69024aae9aab",
+    "name": "DMX",
+    "description": "DMX",
+    "typeName": "",
+    "version": "1.0.0",
+    "inputDescriptions": [],
+    "outputDescriptions": []
+  }
+]
