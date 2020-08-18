@@ -1,3 +1,6 @@
+import { Router } from "@angular/router";
+import { ConnectionSettingsService } from "./../../octopatch/services/connection-settings.service";
+import { ConnectionService } from "./../../octopatch/services/connection.service";
 import { NodeDescription } from "./../../nodes/models/node-description";
 import { ToolboxService } from "./../services/toolbox.service";
 import { EditorConfigurationService } from "./../services/editor-configuration.service";
@@ -24,20 +27,20 @@ export class EditorPageComponent implements OnInit, AfterViewInit, OnDestroy {
   constructor(
     private toolbox: ToolboxService,
     private editorConfigurations: EditorConfigurationService,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private settings: ConnectionSettingsService,
+    private router: Router
   ) {}
-
-  ngOnDestroy(): void {
-    if (this.loadPromise) {
-      this.loadPromise.unsubscribe();
-    }
-  }
 
   get toolboxOpen$(): Observable<boolean> {
     return this.toolbox.toolboxOpen$;
   }
 
   ngOnInit(): void {
+    if (!this.settings.url) {
+      this.router.navigate([""]);
+      return;
+    }
     this.loadPromise = this.editorConfigurations
       .getConfigurations()
       .subscribe((c) => {
@@ -49,6 +52,12 @@ export class EditorPageComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     this.initJsPlumb();
+  }
+
+  ngOnDestroy(): void {
+    if (this.loadPromise) {
+      this.loadPromise.unsubscribe();
+    }
   }
 
   public selectNode(node: NodeConfiguration): void {
