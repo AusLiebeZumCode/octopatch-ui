@@ -1,5 +1,12 @@
 .op-editor-toolbox {
   width: 250px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .op-editor-toolbox-items {
+    flex: 1 1 100%;
+  }
 
   .op-editor-toolbox-item {
     background-color: var(--light-blue);
@@ -7,5 +14,9 @@
     margin: 8px;
     padding: 8px;
     border-radius: 16px;
+  }
+
+  .op-editor-toolbox-actions {
+    padding: 1rem;
   }
 }

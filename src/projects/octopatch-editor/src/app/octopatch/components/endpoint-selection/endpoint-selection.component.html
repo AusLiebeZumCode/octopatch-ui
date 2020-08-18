@@ -1,0 +1,23 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Please enter your connection endpoint
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-form-field class="example-full-width">
+      <mat-label>OctoPatch Endpoint URL</mat-label>
+      <input matInput type="url" #urlInput required />
+    </mat-form-field>
+  </mat-card-content>
+  <mat-card-actions [align]="'end'">
+    <button
+      type="button"
+      mat-flat-button
+      color="primary"
+      (click)="connect(urlInput.value)"
+    >
+      Connect
+    </button>
+  </mat-card-actions>
+</mat-card>
