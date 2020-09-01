@@ -1,6 +1,7 @@
+import { InputEndpoint } from "./../../nodes/models/input-endpoint";
+import { OutputEndpoint } from "./../../nodes/models/output-endpoint";
 import { Router } from "@angular/router";
 import { ConnectionSettingsService } from "./../../octopatch/services/connection-settings.service";
-import { ConnectionService } from "./../../octopatch/services/connection.service";
 import { NodeDescription } from "./../../nodes/models/node-description";
 import { ToolboxService } from "./../services/toolbox.service";
 import { EditorConfigurationService } from "./../services/editor-configuration.service";
@@ -79,15 +80,28 @@ export class EditorPageComponent implements OnInit, AfterViewInit, OnDestroy {
   public createNewNode(nodeDescription: NodeDescription): void {
     const newNode = {
       id: `node${++this.nodeCount}`,
-      name: `${nodeDescription.name} (new)`,
+      name: `${nodeDescription.displayName} (new)`,
       type: nodeDescription,
-      outputs: [],
       inputs: [],
       position: {
         left: 0,
         top: 0,
       },
-    };
+    } as NodeConfiguration;
+    newNode.outputs = nodeDescription.outputDescriptions.map(
+      (od) =>
+        ({
+          id: `${newNode.id}_${od.key}`,
+          name: od.displayName,
+        } as OutputEndpoint)
+    );
+    newNode.inputs = nodeDescription.inputDescriptions.map(
+      (id) =>
+        ({
+          id: `${newNode.id}_${id.key}`,
+          name: id.displayName,
+        } as InputEndpoint)
+    );
     // create node on the engine and add it afterwards
     this.nodeConfigurations.push(newNode);
     setTimeout(() => this.addNode(newNode));
