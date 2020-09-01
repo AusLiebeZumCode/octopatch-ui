@@ -6,15 +6,17 @@
       (click)="handleItemClicked(nodeDescription)"
     >
       <div class="op-editor-toolbox-item-title">
-        {{ nodeDescription.name }} ({{ nodeDescription.version }})
+        {{ nodeDescription.displayName }} ({{ nodeDescription.key }})
       </div>
       <div class="op-editor-toolbox-item-details">
-        <p>{{ nodeDescription.name }}</p>
+        <p>{{ nodeDescription.displayDescription }}</p>
       </div>
       <div class="op-editor-toolbox-item-actions"></div>
     </div>
   </div>
   <div class="op-editor-toolbox-actions">
-    <button mat-flat-button color="danger" (click)="disconnect()">Disconnect</button>
+    <button mat-flat-button color="danger" (click)="disconnect()">
+      Disconnect
+    </button>
   </div>
 </div>

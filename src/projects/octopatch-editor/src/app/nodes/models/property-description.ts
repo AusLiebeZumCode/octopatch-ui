@@ -1,6 +1,6 @@
 import { KeyDescription } from "./key-description";
 import { ContentType } from "./content-type";
 
-export interface ConnectorDescription extends KeyDescription {
+export interface PropertyDescription extends KeyDescription {
   contentType: ContentType;
 }
